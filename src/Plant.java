@@ -9,19 +9,20 @@ public class Plant {
     private LocalDate lastWatering;
     private int frequencyOfWatering;
 
-    public Plant(String name, String notes, LocalDate planted, LocalDate lastWatering, int frequencyOfWatering){
+    public Plant(String name, String notes, LocalDate planted, LocalDate lastWatering, int frequencyOfWatering) throws PlantException {
         this.name = name;
         this.notes = notes;
         this.planted = planted;
-        this.lastWatering = lastWatering;
-        this.frequencyOfWatering = frequencyOfWatering;
+        setLastWatering(lastWatering);
+
+        setFrequencyOfWatering(frequencyOfWatering);
     }
 
-    public Plant(String name, int frequencyOfWatering) {
+    public Plant(String name, int frequencyOfWatering) throws PlantException {
         this(name, "", LocalDate.now(), LocalDate.now(), frequencyOfWatering);
     }
 
-    public Plant(String name) {
+    public Plant(String name) throws PlantException {
         this(name, 7);
     }
     // getters and setters
@@ -53,7 +54,10 @@ public class Plant {
         return lastWatering;
     }
 
-    public void setLastWatering(LocalDate lastWatering) {
+    public void setLastWatering(LocalDate lastWatering) throws PlantException{
+        if(lastWatering.isBefore(planted)){
+            throw new PlantException("Last watering has to be after planting date");
+        }
         this.lastWatering = lastWatering;
     }
 
@@ -61,7 +65,10 @@ public class Plant {
         return frequencyOfWatering;
     }
 
-    public void setFrequencyOfWatering(int frequencyOfWatering) {
+    public void setFrequencyOfWatering(int frequencyOfWatering) throws PlantException{
+        if(frequencyOfWatering <= 0){
+            throw new PlantException("Watering frequency has to be greater then 0.");
+        }
         this.frequencyOfWatering = frequencyOfWatering;
     }
     // extra functions
@@ -69,7 +76,7 @@ public class Plant {
         return "name: " +name+ "; last time watered: " +lastWatering.format(DateTimeFormatter.ofPattern("d. M. yyyy"))+ "; next watering: " +lastWatering.plusDays(frequencyOfWatering).format(DateTimeFormatter.ofPattern("d. M. yyyy"));
     }
 
-    public void doWateringNow(){
+    public void doWateringNow() throws PlantException{
         setLastWatering(LocalDate.now());
     }
 }
