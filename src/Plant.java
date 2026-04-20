@@ -1,4 +1,6 @@
+import java.text.Format;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Plant {
     private String name;
@@ -22,7 +24,7 @@ public class Plant {
     public Plant(String name) {
         this(name, 7);
     }
-
+    // getters and setters
     public String getName() {
         return name;
     }
@@ -61,5 +63,13 @@ public class Plant {
 
     public void setFrequencyOfWatering(int frequencyOfWatering) {
         this.frequencyOfWatering = frequencyOfWatering;
+    }
+    // extra functions
+    public String getWateringInfo(){
+        return "name: " +name+ "; last time watered: " +lastWatering.format(DateTimeFormatter.ofPattern("d. M. yyyy"))+ "; next watering: " +lastWatering.plusDays(frequencyOfWatering).format(DateTimeFormatter.ofPattern("d. M. yyyy"));
+    }
+
+    public void doWateringNow(){
+        setLastWatering(LocalDate.now());
     }
 }
