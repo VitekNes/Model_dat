@@ -1,3 +1,5 @@
+import java.time.Duration;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +31,20 @@ public class PlantManager {
                 temp.add(new Plant(plant.getName(), plant.getNotes(), plant.getPlanted(), plant.getLastWatering(), plant.getFrequencyOfWatering()));
             } catch(PlantException e){
                 throw new PlantException("Failed to load plant:" + e.getMessage());
+            }
+        }
+        return temp;
+    }
+
+    public List<Plant> getWateringList() throws PlantException{
+        List<Plant> temp = new ArrayList<>();
+        for(Plant plant : plantList){
+            if(Duration.between(plant.getLastWatering(), LocalDate.now()).toDays() > plant.getFrequencyOfWatering()){
+                try{
+                    temp.add(new Plant(plant.getName(), plant.getNotes(), plant.getPlanted(), plant.getLastWatering(), plant.getFrequencyOfWatering()));
+                } catch (PlantException e){
+                    throw new PlantException("Failed to load plant:" + e.getMessage());
+                }
             }
         }
         return temp;
