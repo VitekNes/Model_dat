@@ -18,7 +18,15 @@ public class PlantManager {
         plantList.remove(i);
     }
 
-    public List<Plant> getListCopy(){
-        return new ArrayList<>(plantList);
+    public List<Plant> getListCopy() throws PlantException{
+        List<Plant> temp = new ArrayList<>();
+        for(Plant plant : plantList){
+            try{
+                temp.add(new Plant(plant.getName(), plant.getNotes(), plant.getPlanted(), plant.getLastWatering(), plant.getFrequencyOfWatering()));
+            } catch(PlantException e){
+                throw new PlantException("Failed to load plant:" + e.getMessage());
+            }
+        }
+        return temp;
     }
 }
