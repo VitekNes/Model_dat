@@ -8,13 +8,17 @@ public class PlantManager {
         plantList.add(plant);
     }
 
-    public Plant getPlant(int i){
-        // Needs exeption check
+    public Plant getPlant(int i) throws PlantException{
+        if(i < 0 || i >= plantList.size()){
+            throw new PlantException("Index " +i+ " not in plant list");
+        }
         return plantList.get(i);
     }
 
-    public void removePlant(int i){
-        //Needs exeption check
+    public void removePlant(int i) throws PlantException{
+        if(i < 0 || i >= plantList.size()){
+            throw new PlantException("Index " +i+ " not in plant list");
+        }
         plantList.remove(i);
     }
 
