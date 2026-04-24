@@ -1,6 +1,8 @@
 import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 
 public class PlantManager {
@@ -48,5 +50,17 @@ public class PlantManager {
             }
         }
         return temp;
+    }
+
+    public void sortList(SortBy type){
+        if(type == SortBy.Name){
+            plantList.sort(Comparator.comparing(Plant::getName));
+        } else{
+            plantList.sort(Comparator.comparing(Plant::getLastWatering));
+        }
+    }
+
+    public void sortList(){
+        plantList.sort(Comparator.comparing(Plant::getName));
     }
 }
