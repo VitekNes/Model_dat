@@ -19,7 +19,7 @@ public class Plant {
     }
 
     public Plant(String name, int frequencyOfWatering) throws PlantException {
-        this(name, "", LocalDate.now(), LocalDate.now(), frequencyOfWatering);
+        this(name, "No notes", LocalDate.now(), LocalDate.now(), frequencyOfWatering);
     }
 
     public Plant(String name) throws PlantException {

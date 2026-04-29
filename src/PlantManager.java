@@ -18,10 +18,10 @@ public class PlantManager {
     }
 
     public void removePlant(int i) throws PlantException{
-        if(i < 0 || i >= plantList.size()){
+        if(i < 1 || i > plantList.size()){
             throw new PlantException("Index " +i+ " not in plant list");
         }
-        plantList.remove(i);
+        plantList.remove(i-1);
     }
 
     public List<Plant> getListCopy() throws PlantException{
