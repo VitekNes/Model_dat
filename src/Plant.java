@@ -79,4 +79,8 @@ public class Plant {
     public void doWateringNow() throws PlantException{
         setLastWatering(LocalDate.now());
     }
+
+    public String formatForOutput(String delimiter){
+        return String.join(delimiter, name, notes, Integer.toString(frequencyOfWatering), lastWatering.toString(), planted.toString());
+    }
 }

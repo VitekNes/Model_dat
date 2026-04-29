@@ -3,8 +3,8 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        /*PlantManager manager = new PlantManager();
-        try {
+        PlantManager manager = new PlantManager();
+        /*try {
             manager.addPlant(new Plant("prokus", "poznamka", LocalDate.of(2020, 9, 17), LocalDate.of(2026, 3, 10), 7));
             manager.addPlant(new Plant("test3"));
             manager.addPlant(new Plant("test2"));
@@ -16,6 +16,17 @@ public class Main {
             }
         } catch (PlantException e) {
             System.err.println("An error has occured: " + e.getMessage());
+        }
+        try{
+            manager.savePlants("out/testSave1.txt", "\t");
+        } catch(PlantException e){
+            System.err.println("An error has occured: " + e.getMessage());
         }*/
+        /*try {
+            manager.loadPlants("out/testSave1.txt", "\t");
+        } catch (PlantException e) {
+            System.err.println("An error has occured: " + e.getMessage());
+        }
+        System.out.println("Stil running.");*/
     }
 }
